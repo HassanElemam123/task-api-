@@ -12,14 +12,12 @@ function slugify(text) {
 }
 
 async function loadSmartphones() {
-  // Loading بسيطة
   cards.innerHTML = `<p class="no-results">Loading...</p>`;
 
   try {
     const res = await fetch("https://dummyjson.com/products/category/smartphones?limit=8");
     const data = await res.json();
 
-    // نحول الداتا لنفس شكل مشروعك
     products = (data.products || []).slice(0, 8).map((p) => {
       const old_price = Math.round(p.price);
       const price_after_sale = Math.round(p.price * (1 - (p.discountPercentage || 0) / 100));
